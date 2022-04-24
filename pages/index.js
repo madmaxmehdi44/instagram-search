@@ -38,7 +38,7 @@ export default function Home({ instagramScraper }) {
             </div>
 
           
-              <div className={styles.card}>
+              <div className={styles.grid}>
                 {igscrap.latestPosts.map((post) => (
                   <IgPostsUi
                     key={post.id}
