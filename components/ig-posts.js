@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function IgPostsUi({ caption, imageUrl, profileUrl,likes,comments }) {
+export default function IgPostsUi({ caption, imageUrl, profileUrl,likes,comments, location, views }) {
   return(
   <div className="bg-gray-100 p-1">
     <div className="bg-white border rounded-sm max-w-md">
@@ -11,7 +11,7 @@ export default function IgPostsUi({ caption, imageUrl, profileUrl,likes,comments
           {caption}
           </span>
           <span className="text-gray-600 text-xs block">
-            Asheville, North Carolina
+            {location}
           </span>
         </div>
       </div>
@@ -39,6 +39,8 @@ export default function IgPostsUi({ caption, imageUrl, profileUrl,likes,comments
         </div>
       </div>
       <div className="font-semibold text-sm mx-4 mt-2 mb-4">{likes} likes</div>
+      <div className="font-semibold text-sm mx-4 mt-2 mb-4">{comments} comments</div>
+      <div className="font-semibold text-sm mx-4 mt-2 mb-4">{views} views</div>
     </div>
   </div>)
 }

@@ -32,12 +32,12 @@ export default function Home({ instagramScraper }) {
               <h1 className="font-bold p-1">{igscrap.followersCount}</h1>{" "}
               Follows: <h1 className="font-bold p-1">{igscrap.followsCount}</h1>{" "}
               Posts: <h1 className="font-bold p-1">{igscrap.postsCount}</h1>{" "}
-              igtvVideoCount:{" "}
+              IGTVs:{" "}
               <h1 className="font-bold p-1">{igscrap.igtvVideoCount}</h1>{" "}
-              Follows: <h1 className="font-bold p-1">{igscrap.followsCount}</h1>{" "}
+              Reels: <h1 className="font-bold p-1">{igscrap.highlightReelCount}</h1>{" "}
             </div>
 
-            <div>
+          
               <div className={styles.card}>
                 {igscrap.latestPosts.map((post) => (
                   <IgPostsUi
@@ -47,10 +47,12 @@ export default function Home({ instagramScraper }) {
                     profileUrl={igscrap.profilePicUrl}
                     likes={post.likesCount}
                     comments={post.commentsCount}
+                    location={post.locationName}
+                    views={post.videoViewCount}
                   />
                 ))}
               </div>
-            </div>
+            
           </main>
         ))}
       <footer className={styles.footer}>
