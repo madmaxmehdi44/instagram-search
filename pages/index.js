@@ -3,6 +3,10 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 // import { InstagramScraper } from "../components/instagram-scraper";
 // import datanum from "../public/datanum.json";
+const path = require("path");
+const fs = require("fs").promises;
+// const axios = require("axios");
+
 
 export default function Home({ instagramScraper }) {
   return (
@@ -18,14 +22,25 @@ export default function Home({ instagramScraper }) {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
           
         </h1>
-<div>IGUSER: 
+<div>
 {instagramScraper &&
                 instagramScraper.map((igscrap) => (
               <div key={igscrap.id}>
-                {igscrap.username}
+                IGUSER: {igscrap.username}
+                {/* <Image  src={igscrap.url} alt="Vercel Logo" width={100} height={100} /> */}
+                <Image alt={igscrap.fullName} src={igscrap.profilePicUrl} height={200} width={200} />
+                Followers: {igscrap.followersCount}
+                Follows: {igscrap.followsCount}
+                Posts: {igscrap.postsCount}
+                igtvVideoCount: {igscrap.igtvVideoCount}
+                Follows: {igscrap.followsCount}
+
                 {igscrap.latestPosts.map((post) => (
                   <div key={post.id}>
-{post.url}
+{post.caption}
+<Image alt={post.caption} src={post.displayUrl} height={200} width={200} />
+
+
                   </div>
                 ))}
               </div>
@@ -99,8 +114,31 @@ export default function Home({ instagramScraper }) {
 export async function getStaticProps() {
   // Run API calls in parallel
   //const [items] = await Promise.all([InstagramScraper()]);
-  let users = require('/public/datanum.json');
-  // console.log(users[0].id)
+  // let users = require(path.join("datanum.json"));
+  
+  // const filePath = require("../public/datanum.json");
+  // const filePath2 = require("../public/datanum2.json");
+  const stateFile = "./public/datanum2.json";
+
+  const readFile = "./public/datanum.json";
+
+  // console.log('fifififi1: '+path.join(process.cwd(), 'public/datanum2.json'))
+  const file_data = await fs.readFile(readFile)
+  const json_data = JSON.parse(file_data)
+  // console.log('fifififi2: '+file_data)
+  const saveLastEventSequenceId = (sequenceId) => {
+    try {
+        
+
+      fs.writeFileSync(stateFile, json_data);
+      // console.log(json_data) 
+      
+    } catch (err) {
+console.log(err)    }
+  };
+  // fs.writeFileSync(stateFile, filePath);
+  console.log('SENDING FILE DONE~!')
+  console.log(json_data)
   // const uzi =  await Promise.all([users]);
   // console.log(uzi.id)
   // const usersRepo = {
@@ -113,7 +151,7 @@ export async function getStaticProps() {
   return {
     props: {
 
-      instagramScraper: users,
+      instagramScraper: json_data,
     },
     //revalidate: 1,
   };
