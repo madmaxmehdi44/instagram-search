@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function IgPostsUi({ caption, imageUrl, profileUrl,likes,comments }) {
   return(
-  <div className="bg-gray-100 p-4">
+  <div className="bg-gray-100 p-1">
     <div className="bg-white border rounded-sm max-w-md">
       <div className="flex items-center px-4 py-3">
-        <Image className="h-8 w-8 rounded-full" src={profileUrl} alt={caption} height={32}  width={32}  />
+        <Image class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src={profileUrl} alt={caption} height={24}  width={24}  />
         <div className="ml-3 ">
           <span className="text-sm font-semibold antialiased block leading-tight">
           {caption}
