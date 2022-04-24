@@ -1,8 +1,10 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+// import { InstagramScraper } from "../components/instagram-scraper";
+// import datanum from "../public/datanum.json";
 
-export default function Home() {
+export default function Home({ instagramScraper }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -14,10 +16,33 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
+          
         </h1>
-
+<div>IGUSER: 
+{instagramScraper &&
+                instagramScraper.map((igscrap) => (
+              <div >
+                {igscrap.username}
+                {igscrap.latestPosts.map((post) => (
+                  <div>
+{post.url}
+                  </div>
+                ))}
+              </div>
+                   
+                ))}
+</div>
+{/* <div>
+{datanum &&
+                datanum.map((igscrap) => (
+              <div >
+                {igscrap['#debug']}
+              </div>
+                   
+                ))}
+</div> */}
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className={styles.code}>pages/index.js</code>
         </p>
 
@@ -58,12 +83,38 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
+}
+//const fs = require('fs');
+
+
+
+export async function getStaticProps() {
+  // Run API calls in parallel
+  //const [items] = await Promise.all([InstagramScraper()]);
+  let users = require('/public/datanum.json');
+  // console.log(users[0].id)
+  // const uzi =  await Promise.all([users]);
+  // console.log(uzi.id)
+  // const usersRepo = {
+  //   getAll: () =>  uzi,
+  //   getById: id =>  uzi.find(x => x.id.toString() === id.toString()),
+  //   find: x =>  uzi.find(x)
+  // };
+  // const jsdata = JSON.stringify(users)
+
+  return {
+    props: {
+
+      instagramScraper: users,
+    },
+    //revalidate: 1,
+  };
 }
