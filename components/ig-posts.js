@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function IgPostsUi({ caption, imageUrl, profileUrl,likes,comments, location, views }) {
   return(
-    <div className="bg-white border rounded-sm max-w-md my-3">
+    <div className="bg-white border rounded-sm max-w-md my-3 mx-2">
       <div className="flex items-center px-4 py-3">
         <Image class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src={profileUrl} alt={caption} height={24}  width={24}  />
         <div className="ml-3 ">
