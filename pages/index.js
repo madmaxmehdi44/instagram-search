@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import IgPostsUi from "../components/ig-posts";
 import styles from "../styles/Home.module.css";
 // import { InstagramScraper } from "../components/instagram-scraper";
 // import datanum from "../public/datanum.json";
@@ -25,7 +26,7 @@ export default function Home({ instagramScraper }) {
 <div>
 {instagramScraper &&
                 instagramScraper.map((igscrap) => (
-              <div key={igscrap.id}>
+              <div key={igscrap.id} className="text-3xl font-bold underline">
                 IGUSER: {igscrap.username}
                 {/* <Image  src={igscrap.url} alt="Vercel Logo" width={100} height={100} /> */}
                 <Image alt={igscrap.fullName} src={igscrap.profilePicUrl} height={200} width={200} />
@@ -37,9 +38,11 @@ export default function Home({ instagramScraper }) {
 
                 {igscrap.latestPosts.map((post) => (
                   <div key={post.id}>
-{post.caption}
-<Image alt={post.caption} src={post.displayUrl} height={200} width={200} />
-
+                    <IgPostsUi caption ={post.caption} 
+                    imageUrl={post.displayUrl} 
+                    profileUrl={igscrap.profilePicUrl}
+                    likes={post.likesCount}
+                    comments={post.commentsCount} />
 
                   </div>
                 ))}
