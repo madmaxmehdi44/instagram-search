@@ -10,9 +10,9 @@ export async function InstagramScraper() {
   const input = {
     directUrls: ["https://www.instagram.com/developerapiman/"],
     resultsType: "details", //"posts", "comments", "details", "stories"
-    resultsLimit: 1,
+    resultsLimit: 10,
     searchType: "hashtag", //"user", "hashtag", "place", "stories"
-    searchLimit: 1,
+    searchLimit: 10,
     proxy: {
       useApifyProxy: true,
       apifyProxyGroups: ["RESIDENTIAL"],
