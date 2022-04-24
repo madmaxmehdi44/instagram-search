@@ -21,10 +21,10 @@ export default function Home({ instagramScraper }) {
 <div>IGUSER: 
 {instagramScraper &&
                 instagramScraper.map((igscrap) => (
-              <div >
+              <div key={igscrap.id}>
                 {igscrap.username}
                 {igscrap.latestPosts.map((post) => (
-                  <div>
+                  <div key={post.id}>
 {post.url}
                   </div>
                 ))}
