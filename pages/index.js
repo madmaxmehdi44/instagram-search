@@ -37,19 +37,17 @@ export default function Home({ instagramScraper }) {
               Follows: <h1 className="font-bold p-1">{igscrap.followsCount}</h1>{" "}
             </div>
 
-            <div >
+            <div>
               <div className={styles.card}>
                 {igscrap.latestPosts.map((post) => (
-                  <div>
-                    <IgPostsUi
-                      key={post.id}
-                      caption={post.caption}
-                      imageUrl={post.displayUrl}
-                      profileUrl={igscrap.profilePicUrl}
-                      likes={post.likesCount}
-                      comments={post.commentsCount}
-                    />
-                  </div>
+                  <IgPostsUi
+                    key={post.id}
+                    caption={post.caption}
+                    imageUrl={post.displayUrl}
+                    profileUrl={igscrap.profilePicUrl}
+                    likes={post.likesCount}
+                    comments={post.commentsCount}
+                  />
                 ))}
               </div>
             </div>
